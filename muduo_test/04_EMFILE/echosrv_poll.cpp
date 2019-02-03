@@ -29,6 +29,7 @@ int main(void) {
     signal(SIGPIPE, SIG_IGN);   // 忽略SIGPIPE信号，防止进程terminate
     signal(SIGCHLD, SIG_IGN);   // 避免子进程成为僵尸进程
 
+    // 为进程保留一个空闲套接字，用来解决EMFILE问题
     int idlefd = open("/dev/null", O_RDONLY | O_CLOEXEC);
     int listenfd;
 
