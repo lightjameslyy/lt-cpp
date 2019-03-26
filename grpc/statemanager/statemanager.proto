@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package statemanager;
+
+enum State {
+    UNDEFINED   = 0;
+    NOTREADY    = 1;
+    READY       = 2;
+    RUNNING     = 3;
+    DONE        = 4;
+    FAILED      = 5;
+}
+
+// A state manager service
+service StateManager {
+    rpc GetState(GetRequest) returns (Response) {}
+    rpc SetState(SetRequest) returns (Response) {}
+}
+
+message GetRequest {
+    uint64 id = 1;
+}
+
+message SetRequest {
+    uint64 id = 1;
+    State state = 2;
+}
+
+message Response {
+    State state = 1;
+}
+
+
