@@ -1,0 +1,20 @@
+add_executable(starter_test_headeronly.exe starter_test_headeronly.cpp)
+#target_link_libraries(starter_test_headeronly.exe boost_unit_test_framework)
+
+add_executable(starter_test_dynlink.exe starter_test_dynlink.cpp)
+target_link_libraries(starter_test_dynlink.exe boost_unit_test_framework)
+
+add_executable(starter_test_staticlink.exe starter_test_staticlink.cpp)
+target_link_libraries(starter_test_staticlink.exe libboost_unit_test_framework.a)
+
+add_executable(test_case_no_param_auto_register.exe test_case_no_param_auto_register.cpp)
+target_link_libraries(test_case_no_param_auto_register.exe boost_unit_test_framework)
+
+add_executable(test_case_no_param_manual_register.exe test_case_no_param_manual_register.cpp)
+target_link_libraries(test_case_no_param_manual_register.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_example_fibonacci.exe dataset_example_fibonacci.cpp)
+target_link_libraries(dataset_example_fibonacci.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_example_declare.exe dataset_example_declare.cpp)
+target_link_libraries(dataset_example_declare.exe libboost_unit_test_framework.a)
