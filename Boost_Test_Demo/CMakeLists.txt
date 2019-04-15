@@ -18,3 +18,6 @@ target_link_libraries(dataset_example_fibonacci.exe libboost_unit_test_framework
 
 add_executable(dataset_example_declare.exe dataset_example_declare.cpp)
 target_link_libraries(dataset_example_declare.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_example_joins.exe dataset_example_joins.cpp)
+target_link_libraries(dataset_example_joins.exe libboost_unit_test_framework.a)
