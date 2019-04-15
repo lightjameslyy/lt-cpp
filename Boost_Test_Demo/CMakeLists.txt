@@ -1,3 +1,7 @@
+cmake_minimum_required(VERSION 3.1)
+
+set(CMAKE_CXX_STANDARD 11)
+
 add_executable(starter_test_headeronly.exe starter_test_headeronly.cpp)
 #target_link_libraries(starter_test_headeronly.exe boost_unit_test_framework)
 
