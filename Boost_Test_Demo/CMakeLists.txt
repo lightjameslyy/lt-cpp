@@ -25,3 +25,24 @@ target_link_libraries(dataset_example_declare.exe libboost_unit_test_framework.a
 
 add_executable(dataset_example_joins.exe dataset_example_joins.cpp)
 target_link_libraries(dataset_example_joins.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_example_zips.exe dataset_example_zips.cpp)
+target_link_libraries(dataset_example_zips.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_example_grid.exe dataset_example_grid.cpp)
+target_link_libraries(dataset_example_grid.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_generators_singleton.exe dataset_generators_singleton.cpp)
+target_link_libraries(dataset_generators_singleton.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_generators_carrays.exe dataset_generators_carrays.cpp)
+target_link_libraries(dataset_generators_carrays.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_generators_forward_iterable_containers.exe dataset_generators_forward_iterable_containers.cpp)
+target_link_libraries(dataset_generators_forward_iterable_containers.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_generators_range.exe dataset_generators_range.cpp)
+target_link_libraries(dataset_generators_range.exe libboost_unit_test_framework.a)
+
+add_executable(dataset_generators_random.exe dataset_generators_random.cpp)
+target_link_libraries(dataset_generators_random.exe libboost_unit_test_framework.a)
