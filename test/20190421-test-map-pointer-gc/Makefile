@@ -2,12 +2,7 @@
 
 include ../../make.inc
 
-CXX = g++
-CXXFLAGS = -std=c++11 
-ECXXFLAGS = 
-INC = 
-LDFLAGS = 
-LDLIBS = 
+LDLIBS = -lboost_unit_test_framework
 
 SRCS = $(wildcard *.cpp)
 
