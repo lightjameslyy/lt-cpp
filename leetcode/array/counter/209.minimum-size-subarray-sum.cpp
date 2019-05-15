@@ -29,9 +29,33 @@
  * which the time complexity is O(n log n). 
  * 
  */
+
+/*
+ * 思路：two pointers, decreasing sliding window
+*/
 class Solution {
 public:
     int minSubArrayLen(int s, vector<int>& nums) {
-        
+        int res = INT_MAX;
+        int sum = 0;
+        int left = 0, right = 0;
+        for (; right < nums.size();) {
+            if (right-left+1 >= res) {
+                sum -= nums[left++];
+                continue;
+            }
+            sum += nums[right];
+            //cout << left << " " << right << " " << sum << endl;
+            if (sum >= s) {
+                while (sum - nums[left] >= s) {
+                    sum -= nums[left++];
+                }
+                res = min(res, right-left+1);
+            }
+            right++;
+        }
+        if (res == INT_MAX)
+            return 0;
+        return res;
     }
 };
