@@ -59,7 +59,6 @@ public:
             if (maxi[i] > res)
                 res = maxi[i];
         }
-
         return res;
     }
 };
