@@ -37,16 +37,28 @@
  */
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
-    int maxProduct(vector<int>& nums) {
+    int maxProduct(vector<int> &nums) {
         int size = nums.size();
         if (size == 0)
             return 0;
-        int res = 0;
+        int res = *max_element(nums.begin(), nums.end());
+        vector<long long> maxi(size, 0), mini(size, 0);
+
+        maxi[0] = max(0, nums[0]);
+        mini[0] = min(0, nums[0]);
+
+        for (int i = 1; i < size; ++i) {
+            maxi[i] = max(max((long long) max(0, nums[i]), maxi[i - 1] * nums[i]), mini[i - 1] * nums[i]);
+            mini[i] = min(min((long long) min(0, nums[i]), maxi[i - 1] * nums[i]), mini[i - 1] * nums[i]);
+            if (maxi[i] > res)
+                res = maxi[i];
+        }
 
         return res;
     }
