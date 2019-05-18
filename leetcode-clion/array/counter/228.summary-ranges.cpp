@@ -39,21 +39,21 @@ using namespace std;
 
 class Solution {
 public:
-    vector<string> summaryRanges(vector<int>& nums) {
+    vector<string> summaryRanges(vector<int> &nums) {
         int size = nums.size();
         vector<string> res;
         if (size == 0)
             return res;
 
-        int prev= nums[0];
-        int left = nums[0];
+        long long prev = nums[0];
+        long long left = nums[0];
         for (int i = 1; i < size; ++i) {
-            int cur = nums[i];
-            if (cur-prev > 1) {
+            long long cur = nums[i];
+            if (cur - prev > 1) {
                 if (left == prev) {
                     res.push_back(to_string(left));
                 } else {
-                    res.push_back(to_string(left)+ "->" + to_string(prev));
+                    res.push_back(to_string(left) + "->" + to_string(prev));
                 }
                 left = cur;
             }
@@ -62,7 +62,7 @@ public:
         if (left == prev) {
             res.push_back(to_string(left));
         } else {
-            res.push_back(to_string(left)+ "->" + to_string(prev));
+            res.push_back(to_string(left) + "->" + to_string(prev));
         }
 
         return res;
