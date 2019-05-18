@@ -44,6 +44,7 @@
  */
 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -51,20 +52,33 @@ class Solution {
 public:
     void sortColors(vector<int> &nums) {
         int size = nums.size();
-        int l = 0, r = size - 1;
-        while (l < r) {
-            while (nums[l] == 0) {
-                l++;
-                if (l >= size)
-                    return;
+        if (size < 2)
+            return;
+        int next_0_pos = 0, next_2_pos = size - 1;
+        for (int i = 0; i < size;) {
+            while (next_0_pos < size && nums[next_0_pos] == 0) {
+                next_0_pos++;
             }
-            while (nums[r] == 2) {
-                r--;
-                if (r < 0)
-                    return;
+            if (next_0_pos >= size)
+                return;
+            i = max(i, next_0_pos);
+            while (next_2_pos >= 0 && nums[next_2_pos] == 2) {
+                next_2_pos--;
             }
-            if (l < r)
-                swap(nums[l++], nums[r--]);
+            if (next_2_pos < 0 || i > next_2_pos)
+                return;
+            if (nums[i] == 0) {
+                if (i > next_0_pos)
+                    swap(nums[next_0_pos], nums[i]);
+                else {
+                    ++i;
+                }
+                ++next_0_pos;
+            } else if (nums[i] == 2) {
+                swap(nums[next_2_pos--], nums[i]);
+            } else {
+                ++i;
+            }
         }
     }
 };
