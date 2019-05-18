@@ -45,11 +45,11 @@ public:
         if (size == 0)
             return res;
 
-        long long prev = nums[0];
-        long long left = nums[0];
+        int prev = nums[0];
+        int left = nums[0];
         for (int i = 1; i < size; ++i) {
-            long long cur = nums[i];
-            if (cur - prev > 1) {
+            int cur = nums[i];
+            if (prev + 1 != cur) {
                 if (left == prev) {
                     res.push_back(to_string(left));
                 } else {
