@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "array/sort/75.sort-colors.cpp"
+#include "array/sort/283.move-zeroes.cpp"
 
 using namespace std;
 
@@ -20,11 +20,8 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-//    vector<int> nums1{2, 0, 2, 1, 1, 0};
-//    vector<int> nums1{2, 0, 1};
-    vector<int> nums1{0, 0};
-//    vector<int> nums1{2, 2};
-    s.sortColors(nums1);
+    vector<int> nums1{0, 1, 0, 3, 12};
+    s.moveZeroes(nums1);
     print(nums1);
     return 0;
 }
