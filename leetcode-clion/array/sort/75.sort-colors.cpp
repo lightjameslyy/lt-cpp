@@ -50,10 +50,19 @@ using namespace std;
 class Solution {
 public:
     void sortColors(vector<int> &nums) {
-        int l = 0, r = nums.size() - 1;
+        int size = nums.size();
+        int l = 0, r = size - 1;
         while (l < r) {
-            while (nums[l] == 0) l++;
-            while (nums[r] == 2) r--;
+            while (nums[l] == 0) {
+                l++;
+                if (l >= size)
+                    return;
+            }
+            while (nums[r] == 2) {
+                r--;
+                if (r < 0)
+                    return;
+            }
             if (l < r)
                 swap(nums[l++], nums[r--]);
         }
