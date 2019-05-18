@@ -30,9 +30,26 @@
  * Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
  * 
  */
+
+/*
+ * 思路：动态规划
+ * 维护maxi[]和mini[]两个数组。
+ */
+
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
     int maxProduct(vector<int>& nums) {
-        
+        int size = nums.size();
+        if (size == 0)
+            return 0;
+        int res = 0;
+
+        return res;
     }
 };
+
+

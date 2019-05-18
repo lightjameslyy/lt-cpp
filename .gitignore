@@ -1,7 +1,13 @@
+# Executables
 *.o
 *.bin
 *.exe
+
+# vscode
 vscode-markdown.css
-build/
 .vscode/
+
+# Clion & cmake
 .idea/
+cmake-build-debug/
+build/
