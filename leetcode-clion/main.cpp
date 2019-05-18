@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "array/sort/88.merge-sorted-array.cpp"
+#include "array/sort/75.sort-colors.cpp"
 
 using namespace std;
 
@@ -20,9 +20,8 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    vector<int> nums1 {1,2,3,0,0,0};
-    vector<int> nums2 {2,5,6};
-    s.merge(nums1, 3, nums2, 3);
+    vector<int> nums1{2, 0, 2, 1, 1, 0};
+    s.sortColors(nums1);
     print(nums1);
     return 0;
 }

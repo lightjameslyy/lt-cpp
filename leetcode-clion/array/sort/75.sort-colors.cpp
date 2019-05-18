@@ -38,9 +38,24 @@
  * 
  * 
  */
+
+/*
+ * 思路： two pointers
+ */
+
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
-    void sortColors(vector<int>& nums) {
-        
+    void sortColors(vector<int> &nums) {
+        int l = 0, r = nums.size() - 1;
+        while (l < r) {
+            while (nums[l] == 0) l++;
+            while (nums[r] == 2) r--;
+            if (l < r)
+                swap(nums[l++], nums[r--]);
+        }
     }
 };
