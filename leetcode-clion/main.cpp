@@ -26,5 +26,6 @@ int main() {
 //    vector<int> nums1{4, 5, 5, 5, 5, 6, 6, 6};
     s.wiggleSort(nums1);
     print(nums1);
+    cout << res << endl;
     return 0;
 }

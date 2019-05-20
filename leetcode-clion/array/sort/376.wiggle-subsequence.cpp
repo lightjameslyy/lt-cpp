@@ -56,9 +56,51 @@
  * 
  * 
  */
+
+/*
+ * 思路：数上升沿和下降沿的个数。
+ */
+
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
-    int wiggleMaxLength(vector<int>& nums) {
-        
+    int wiggleMaxLength(vector<int> &nums) {
+        int size = nums.size();
+        if (size < 2)
+            return size;
+        int res = 1;
+        enum Direction {
+            UNKNOWN,
+            UP,
+            DOWN
+        };
+        Direction dir = UNKNOWN;
+        int pre = nums[0];
+        for (int i = 1; i < size; ++i) {
+            if (dir == UNKNOWN) {
+                if (nums[i] > pre) {
+                    dir = UP;
+                    res++;
+                } else if (nums[i] < pre) {
+                    dir = DOWN;
+                    res++;
+                }
+            } else if (dir == UP) {
+                if (nums[i] < pre) {
+                    res++;
+                    dir = DOWN;
+                }
+            } else { // dir == DOWN
+                if (nums[i] > pre) {
+                    res++;
+                    dir = UP;
+                }
+            }
+            pre = nums[i];
+        }
+        return res;
     }
 };
