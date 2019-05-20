@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "array/sort/283.move-zeroes.cpp"
+#include "array/sort/324.wiggle-sort-ii.cpp"
 
 using namespace std;
 
@@ -20,8 +20,11 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    vector<int> nums1{0, 1, 0, 3, 12};
-    s.moveZeroes(nums1);
+
+//    vector<int> nums1{1, 5, 1, 1, 6, 4};
+    vector<int> nums1{1, 3, 2, 2, 3, 1};
+//    vector<int> nums1{4, 5, 5, 5, 5, 6, 6, 6};
+    s.wiggleSort(nums1);
     print(nums1);
     return 0;
 }
