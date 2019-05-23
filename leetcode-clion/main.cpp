@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/28.implement-strstr.cpp"
+#include "string/basics/14.longest-common-prefix.cpp"
 
 using namespace std;
 
@@ -20,9 +20,7 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.strStr("hello", "ll") << endl;
-    cout << s.strStr("", "") << endl;
-    cout << s.strStr("aaaaa", "bba") << endl;
-    cout << s.strStr("bbc abcdab abcdabcdabde", "abcdabd") << endl;
+    vector<string> strs{"flower", "flow", "flight"};
+    cout << s.longestCommonPrefix(strs);
     return 0;
 }
