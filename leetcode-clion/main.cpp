@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "array/sort/324.wiggle-sort-ii.cpp"
+#include "string/basics/14.longest-common-prefix.cpp"
 
 using namespace std;
 
@@ -20,12 +20,7 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-
-//    vector<int> nums1{1, 5, 1, 1, 6, 4};
-    vector<int> nums1{1, 3, 2, 2, 3, 1};
-//    vector<int> nums1{4, 5, 5, 5, 5, 6, 6, 6};
-    s.wiggleSort(nums1);
-    print(nums1);
-    cout << res << endl;
+    vector<string> strs{"flower", "flow", "flight"};
+    cout << s.longestCommonPrefix(strs);
     return 0;
 }
