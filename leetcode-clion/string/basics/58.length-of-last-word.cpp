@@ -29,9 +29,24 @@
  * 
  * 
  */
+
+using namespace std;
+
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        
+        int res = 0;
+        int i = s.length() - 1;
+        while (s[i] == ' ') {
+            --i;
+        }
+        for (; i >= 0; --i) {
+            if (s[i] == ' ') {
+                return res;
+            } else {
+                res++;
+            }
+        }
+        return res;
     }
 };
