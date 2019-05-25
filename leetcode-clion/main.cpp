@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/344.reverse-string.cpp"
+#include "string/basics/151.reverse-words-in-a-string.cpp"
 
 using namespace std;
 
@@ -20,12 +20,10 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    vector<char> v1{'0', '1', '2', '3', '4'};
-    s.reverseString(v1);
-    print<char>(v1);
-
-    vector<char> v2{'0', '1', '2', '3', '4', '5'};
-    s.reverseString(v2);
-    print<char>(v2);
+//    string res = s.reverseWords("a good   example");
+//    string res = s.reverseWords("  hello world!  ");
+//    string res = s.reverseWords("the sky is blue");
+    string res = s.reverseWords("   one.   +two three?   ~four   !five- ");
+    cout << "\"" << res << "\"" << endl;
     return 0;
 }
