@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/14.longest-common-prefix.cpp"
+#include "string/basics/383.ransom-note.cpp"
 
 using namespace std;
 
@@ -20,7 +20,8 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    vector<string> strs{"flower", "flow", "flight"};
-    cout << s.longestCommonPrefix(strs);
+    cout << s.canConstruct("aa", "aab") << endl;
+    cout << s.canConstruct("a", "b") << endl;
+    cout << s.canConstruct("aa", "ab") << endl;
     return 0;
 }
