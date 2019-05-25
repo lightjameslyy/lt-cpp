@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/383.ransom-note.cpp"
+#include "string/basics/344.reverse-string.cpp"
 
 using namespace std;
 
@@ -20,8 +20,12 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.canConstruct("aa", "aab") << endl;
-    cout << s.canConstruct("a", "b") << endl;
-    cout << s.canConstruct("aa", "ab") << endl;
+    vector<char> v1{'0', '1', '2', '3', '4'};
+    s.reverseString(v1);
+    print<char>(v1);
+
+    vector<char> v2{'0', '1', '2', '3', '4', '5'};
+    s.reverseString(v2);
+    print<char>(v2);
     return 0;
 }
