@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/205.isomorphic-strings.cpp"
+#include "string/basics/242.valid-anagram.cpp"
 
 using namespace std;
 
@@ -20,8 +20,7 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.isIsomorphic("foo", "bar") << endl;
-    cout << s.isIsomorphic("egg", "add") << endl;
-    cout << s.isIsomorphic("paper", "title") << endl;
+    cout << s.isAnagram("anagram", "nagaram") << endl;
+    cout << s.isAnagram("rat", "car") << endl;
     return 0;
 }
