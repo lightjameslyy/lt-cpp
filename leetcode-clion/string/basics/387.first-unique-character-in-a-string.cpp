@@ -29,9 +29,39 @@
  * Note: You may assume the string contain only lowercase letters.
  * 
  */
+
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
+    int firstUniqChar1(string s) {
+        long long res = 1LL << 40;
+        vector<int> counts(128, 0), pos(128, 0);
+        for (int i = s.length(); i >= 0; --i) {
+            counts[s[i]]++;
+            pos[s[i]] = i;
+        }
+        for (int i = 'a'; i <= 'z'; ++i) {
+            if (counts[i] == 1 && pos[i] < res)
+                res = pos[i];
+        }
+        if (res < 1LL << 40) {
+            return res;
+        }
+        return -1;
+    }
+
     int firstUniqChar(string s) {
-        
+        vector<int> counts('z'+1, 0);
+        for (int i = 0; i < s.length(); ++i) {
+            counts[s[i]]++;
+        }
+        for (int i = 0; i < s.length(); ++i) {
+            if (counts[s[i]] == 1)
+                return i;
+        }
+        return -1;
     }
 };
