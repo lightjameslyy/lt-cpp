@@ -52,9 +52,9 @@ class Solution {
 public:
     bool isIsomorphic(string s, string t) {
         assert(s.length() == t.length());
-        vector<int> s_map(256, -1), t_map(256, -1);
+        vector<char> s_map(256, '\0'), t_map(256, '\0');
         for (size_t i = 0; i < s.length(); ++i) {
-            if (s_map[s[i]] == -1 && t_map[t[i]] == -1) {
+            if (s_map[s[i]] == '\0' && t_map[t[i]] == '\0') {
                 s_map[s[i]] = t[i];
                 t_map[t[i]] = s[i];
             } else if (s_map[s[i]] != t[i] || t_map[t[i]] != s[i]) {
