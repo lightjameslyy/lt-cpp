@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/345.reverse-vowels-of-a-string.cpp"
+#include "string/basics/205.isomorphic-strings.cpp"
 
 using namespace std;
 
@@ -20,9 +20,8 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-//    string res = s.reverseVowels("leetcode");
-//    string res = s.reverseVowels("OE");
-    string res = s.reverseVowels(",.");
-    cout << "\"" << res << "\"" << endl;
+    cout << s.isIsomorphic("foo", "bar") << endl;
+    cout << s.isIsomorphic("egg", "add") << endl;
+    cout << s.isIsomorphic("paper", "title") << endl;
     return 0;
 }
