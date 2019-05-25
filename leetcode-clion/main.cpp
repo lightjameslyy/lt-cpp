@@ -21,7 +21,8 @@ void print(vector<T> &vec) {
 int main() {
     Solution s;
 //    string res = s.reverseVowels("leetcode");
-    string res = s.reverseVowels("OE");
+//    string res = s.reverseVowels("OE");
+    string res = s.reverseVowels(",.");
     cout << "\"" << res << "\"" << endl;
     return 0;
 }

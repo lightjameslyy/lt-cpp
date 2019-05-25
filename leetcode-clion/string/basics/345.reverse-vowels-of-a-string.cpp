@@ -64,9 +64,9 @@ public:
         is_vowel['U'] = true;
         int left = 0, right = len-1;
         while (left < right) {
-            while (is_vowel[s[left]] == false)
+            while (left < s.length() && is_vowel[s[left]] == false)
                 left++;
-            while (is_vowel[s[right]] == false)
+            while (right < s.length() && is_vowel[s[right]] == false)
                 right--;
             if (left < right)
                 swap(s[left++], s[right--]);
