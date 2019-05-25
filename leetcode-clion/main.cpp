@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/151.reverse-words-in-a-string.cpp"
+#include "string/basics/345.reverse-vowels-of-a-string.cpp"
 
 using namespace std;
 
@@ -20,10 +20,7 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-//    string res = s.reverseWords("a good   example");
-//    string res = s.reverseWords("  hello world!  ");
-//    string res = s.reverseWords("the sky is blue");
-    string res = s.reverseWords("   one.   +two three?   ~four   !five- ");
+    string res = s.reverseVowels("leetcode");
     cout << "\"" << res << "\"" << endl;
     return 0;
 }
