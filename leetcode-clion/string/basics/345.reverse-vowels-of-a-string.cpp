@@ -57,6 +57,11 @@ public:
         is_vowel['i'] = true;
         is_vowel['o'] = true;
         is_vowel['u'] = true;
+        is_vowel['A'] = true;
+        is_vowel['E'] = true;
+        is_vowel['I'] = true;
+        is_vowel['O'] = true;
+        is_vowel['U'] = true;
         int left = 0, right = len-1;
         while (left < right) {
             while (is_vowel[s[left]] == false)

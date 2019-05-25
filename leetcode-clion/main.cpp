@@ -20,7 +20,8 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    string res = s.reverseVowels("leetcode");
+//    string res = s.reverseVowels("leetcode");
+    string res = s.reverseVowels("OE");
     cout << "\"" << res << "\"" << endl;
     return 0;
 }
