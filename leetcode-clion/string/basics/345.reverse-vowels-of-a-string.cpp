@@ -62,7 +62,7 @@ public:
         is_vowel['I'] = true;
         is_vowel['O'] = true;
         is_vowel['U'] = true;
-        int left = 0, right = len-1;
+        int left = 0, right = len - 1;
         while (left < right) {
             while (left < s.length() && is_vowel[s[left]] == false)
                 left++;
