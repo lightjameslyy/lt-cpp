@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/242.valid-anagram.cpp"
+#include "string/basics/49.group-anagrams.cpp"
 
 using namespace std;
 
@@ -20,7 +20,10 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.isAnagram("anagram", "nagaram") << endl;
-    cout << s.isAnagram("rat", "car") << endl;
+    string strs[] = {"eat", "tea", "tan", "ate", "nat", "bat"};
+    vector<vector<string>> res = s.groupAnagrams(vector<string>(strs, strs+6));
+    for (auto v : res) {
+        print(v);
+    }
     return 0;
 }
