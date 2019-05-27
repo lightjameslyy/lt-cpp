@@ -33,40 +33,42 @@
  * 
  */
 
+#include <cstring>
+#include <string>
 #include <vector>
+#include <unordered_map>
+#include <utility>
 
 using namespace std;
 
+static const int COUNT_SIZE = 26;
+static int counts[COUNT_SIZE];
+
 class Solution {
 public:
-    bool isAnagram(string s, string t) {
-        vector<int> count_s(26, 0), count_t(26, 0);
-        for (char c : s) {
-            count_s[c - 'a']++;
+    string getKey(string str) {
+        memset(counts, 0, sizeof(int) * COUNT_SIZE);
+        string key = "";
+        for (char c : str) {
+            counts[c - 'a']++;
         }
-        for (char c : t) {
-            count_t[c - 'a']++;
+        for (int i = 0; i < COUNT_SIZE; ++i) {
+            if (counts[i]) {
+                key += to_string(counts[i]);
+                key += 'a' + i;
+            }
         }
-        for (int i = 0; i < 26; ++i) {
-            if (count_s[i] != count_t[i])
-                return false;
-        }
-        return true;
+        return key;
     }
 
     vector<vector<string>> groupAnagrams(vector<string> strs) {
         vector<vector<string>> res;
-        for (int i = 0; i < strs.size(); ++i) {
-            bool flag = false;
-            for (int j = 0; j < res.size(); ++j) {
-                if (isAnagram(strs[i], res[j][0])) {
-                    res[j].push_back(strs[i]);
-                    flag = true;
-                }
-            }
-            if (flag == false) {
-                res.push_back({strs[i]});
-            }
+        unordered_map<string, vector<string>> mp;
+        for (auto &s : strs) {
+            mp[getKey(s)].push_back(s);
+        }
+        for (auto &kv : mp) {
+            res.push_back(move(kv.second));
         }
         return res;
     }
