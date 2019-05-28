@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/49.group-anagrams.cpp"
+#include "string/basics/87.scramble-string.cpp"
 
 using namespace std;
 
@@ -20,10 +20,7 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    string strs[] = {"eat", "tea", "tan", "ate", "nat", "bat"};
-    vector<vector<string>> res = s.groupAnagrams(vector<string>(strs, strs+6));
-    for (auto v : res) {
-        print(v);
-    }
+    cout << s.isScramble("great", "rgeat") << endl;
+    cout << s.isScramble("abcde", "caebd") << endl;
     return 0;
 }
