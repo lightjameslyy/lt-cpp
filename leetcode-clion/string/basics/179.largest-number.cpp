@@ -68,6 +68,11 @@ bool greater_string(const string &s1, const string &s2) {
     return false;
 }
 
+
+bool greater_comp(const string &s1, const string &s2) {
+    return s1+s2 > s2+s1;
+}
+
 class Solution {
 public:
 
@@ -75,23 +80,15 @@ public:
         int size = nums.size();
         if (size == 0)
             return "0";
-        string res = "";
         for (int val : nums) {
             strs.push_back(to_string(val));
         }
-        sort(strs.begin(), strs.end(), greater_string);
-//        sort(strs.begin(), strs.end());
-//        cout << "ok" << endl;
+        sort(strs.begin(), strs.end(), greater_comp);
+        if (strs[0] == "0")
+            return "0";
+        string res = "";
         for (string &s: strs)
             res += s;
-        int nzpos = 0;
-        while (nzpos < res.length() - 1) {
-            if (res[nzpos] == '0')
-                nzpos++;
-            else break;
-        }
-        if (nzpos > 0)
-            return res.substr(nzpos);
         return res;
     }
 
