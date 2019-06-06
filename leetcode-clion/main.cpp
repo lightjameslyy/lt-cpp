@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/179.largest-number.cpp"
+#include "string/basics/6.zigzag-conversion.cpp"
 
 using namespace std;
 
@@ -20,14 +20,7 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-//    vector<int> nums{3, 30, 34, 5, 9};
-//    vector<int> nums{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    vector<int> nums{824, 938, 1399, 5607, 6973, 5703, 9609, 4398, 8247};
-//    vector<int> nums{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//                     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-//                     0};
-    cout << s.largestNumber(nums) << endl;
-    print(s.strs);
+    cout << s.convert("PAYPALISHIRING", 3) << endl;
+    cout << s.convert("PAYPALISHIRING", 4) << endl;
     return 0;
 }
