@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/6.zigzag-conversion.cpp"
+#include "string/basics/38.count-and-say.cpp"
 
 using namespace std;
 
@@ -20,7 +20,6 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.convert("PAYPALISHIRING", 3) << endl;
-    cout << s.convert("PAYPALISHIRING", 4) << endl;
+    cout << s.countAndSay(10) << endl;
     return 0;
 }
