@@ -20,11 +20,16 @@ int main() {
     qis.push_back({1, 1});
     qis.push_back({2, 1});
 
-    vector<queryInfo> qis1(move(qis));
-
+    vector<queryInfo> qis1 = qis;
     cout << "qis: \n";
     print(qis);
     cout << "qis1: \n";
     print(qis1);
+    
+    vector<queryInfo> qis2 = move(qis);
+    cout << "qis: \n";
+    print(qis);
+    cout << "qis2: \n";
+    print(qis2);
     return 0;
 }
