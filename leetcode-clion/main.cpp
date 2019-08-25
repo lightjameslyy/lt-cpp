@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/38.count-and-say.cpp"
+#include "string/basics/316.remove-duplicate-letters.cpp"
 
 using namespace std;
 
@@ -20,6 +20,8 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.countAndSay(10) << endl;
+    cout << s.removeDuplicateLetters("cbacdcbc") << endl;
+    cout << s.removeDuplicateLetters("bcabc") << endl;
+    cout << s.removeDuplicateLetters("thesqtitxyetpxloeevdeqifkz") << endl;
     return 0;
 }
