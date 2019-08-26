@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/168.excel-sheet-column-title.cpp"
+#include "string/basics/171.excel-sheet-column-number.cpp"
 
 using namespace std;
 
@@ -20,9 +20,10 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.convertToTitle(701) << endl;
-    cout << s.convertToTitle(28) << endl;
-    cout << s.convertToTitle(4798234) << endl;
-    cout << s.convertToTitle(52) << endl;
+    cout << s.titleToNumber("A") << endl;
+    cout << s.titleToNumber("AB") << endl;
+    cout << s.titleToNumber("ZY") << endl;
+    cout << s.titleToNumber("AZ") << endl;
+    cout << s.titleToNumber("CFDGSXM") << endl;
     return 0;
 }

@@ -48,9 +48,34 @@
  * Output: 701
  * 
  */
+#include <cassert>
+
+using namespace std;
+
 class Solution {
 public:
+    // more neat code: forwards
     int titleToNumber(string s) {
-        
+        assert(!s.empty());
+        int res = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            res += s[i] - 'A' + 1;
+            if (i != s.length() - 1)
+                res *= 26;
+        }
+        return res;
+    }
+
+    // backwards
+    int titleToNumber1(string s) {
+        assert(!s.empty());
+        int res = 0;
+        long long base = 1;
+        for (int i = s.length() - 1; i >= 0; --i) {
+            int num = s[i] - 'A' + 1;
+            res += num * base;
+            base *= 26;
+        }
+        return res;
     }
 };
