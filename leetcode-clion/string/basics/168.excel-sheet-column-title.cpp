@@ -48,9 +48,46 @@
  * Output: "ZY"
  * 
  */
+
+#include <string>
+#include <algorithm>
+#include <cassert>
+
+
+using namespace std;
+
 class Solution {
 public:
+    // neat code: convert to zero based
     string convertToTitle(int n) {
-        
+        string res;
+        while (n) {
+            n--;
+            res += 'A' + n%26;
+            n /= 26;
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+
+    string convertToTitle1(int n) {
+        assert(n > 0);
+        string res = "";
+        while (true) {
+            if (n <= 26) {
+                res += n - 1 + 'A';
+                break;
+            }
+            int remainder = n % 26;
+            if (!remainder) {
+                res += 'Z';
+                n -= 26;
+            } else {
+                res += (n % 26 - 1) + 'A';
+            }
+            n /= 26;
+        }
+        reverse(res.begin(), res.end());
+        return res;
     }
 };
