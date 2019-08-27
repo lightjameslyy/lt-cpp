@@ -3,7 +3,7 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/171.excel-sheet-column-number.cpp"
+#include "string/basics/273.integer-to-english-words.cpp"
 
 using namespace std;
 
@@ -20,10 +20,12 @@ void print(vector<T> &vec) {
 
 int main() {
     Solution s;
-    cout << s.titleToNumber("A") << endl;
-    cout << s.titleToNumber("AB") << endl;
-    cout << s.titleToNumber("ZY") << endl;
-    cout << s.titleToNumber("AZ") << endl;
-    cout << s.titleToNumber("CFDGSXM") << endl;
+//    cout << "\"" << s.decode(130, 0) << "\"" << endl;
+    cout << "\"" << s.numberToWords(0) << "\"" << endl;
+    cout << "\"" << s.numberToWords(19) << "\"" << endl;
+    cout << "\"" << s.numberToWords(123) << "\"" << endl;
+    cout << "\"" << s.numberToWords(12345) << "\"" << endl;
+    cout << "\"" << s.numberToWords(1234567) << "\"" << endl;
+    cout << "\"" << s.numberToWords(1234567891) << "\"" << endl;
     return 0;
 }

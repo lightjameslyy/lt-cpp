@@ -77,9 +77,76 @@
  * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  * 
  */
+
+#include <cassert>
+
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
+    int val(char c) {
+        switch (c) {
+            case 'I':
+                return 1;
+            case 'V':
+                return 5;
+            case 'X':
+                return 10;
+            case 'L':
+                return 50;
+            case 'C':
+                return 100;
+            case 'D':
+                return 500;
+            case 'M':
+                return 1000;
+            default:
+                return -1;
+        }
+    }
+
     int romanToInt(string s) {
-        
+        assert(!s.empty());
+        int res = 0;
+        res += val(s.back());
+        int prev = res;
+        for (int i = s.length() - 2; i >= 0; --i) {
+            int cur = val(s[i]);
+            if (cur >= prev) {
+                res += cur;
+            } else {
+                res -= cur;
+            }
+            prev = cur;
+        }
+        return res;
+    }
+
+    int romanToInt1(string s) {
+        assert(!s.empty());
+        vector<int> val('Y');
+        val['I'] = 1;
+        val['V'] = 5;
+        val['X'] = 10;
+        val['L'] = 50;
+        val['C'] = 100;
+        val['D'] = 500;
+        val['M'] = 1000;
+
+        int res = 0;
+        res += val[s.back()];
+        int prev = res;
+        for (int i = s.length() - 2; i >= 0; --i) {
+            int cur = val[s[i]];
+            if (cur >= prev) {
+                res += cur;
+            } else {
+                res -= cur;
+            }
+            prev = cur;
+        }
+        return res;
     }
 };

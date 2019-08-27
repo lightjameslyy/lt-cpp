@@ -77,9 +77,81 @@
  * Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
  * 
  */
+
+#include <string>
+#include <cassert>
+
+using namespace std;
+
 class Solution {
 public:
+
     string intToRoman(int num) {
-        
+        string res = "";
+        string dict[4][10] = {
+                {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+                {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+                {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+                {"", "M", "MM", "MMM"}
+        };
+        res += dict[3][num / 1000];
+        res += dict[2][num / 100 % 10];
+        res += dict[1][num / 10 % 10];
+        res += dict[0][num % 10];
+        return res;
+    }
+
+    string decode(int base, int val) {
+        assert(base == 1 || base == 10 || base == 100 || base == 1000);
+        assert(val >= 0 && val <= 9);
+        string res = "";
+        string one, two, three, five, ten;
+        switch (base) {
+            case 1:
+                one = "I", two = "II", three = "III", five = 'V', ten = 'X';
+                break;
+            case 10:
+                one = "X", two = "XX", three = "XXX", five = 'L', ten = 'C';
+                break;
+            case 100:
+                one = "C", two = "CC", three = "CCC", five = 'D', ten = 'M';
+                break;
+            case 1000:
+                one = 'M', two = "MM", three = "MMM";
+                break;
+        }
+        switch (val) {
+            case 0:
+                return res;
+            case 1:
+                return res + one;
+            case 2:
+                return res + two;
+            case 3:
+                return res + three;
+            case 4:
+                return res + one + five;
+            case 5:
+                return res + five;
+            case 6:
+                return res + five + one;
+            case 7:
+                return res + five + two;
+            case 8:
+                return res + five + three;
+            case 9:
+                return res + one + ten;
+        }
+        return res;
+    }
+
+    string intToRoman1(int num) {
+        string res = "";
+        for (int base = 1000; base >= 1; base /= 10) {
+            int val = num / base;
+            num -= val * base;
+            res += decode(base, val);
+        }
+        return res;
     }
 };
