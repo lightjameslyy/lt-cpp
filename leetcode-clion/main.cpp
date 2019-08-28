@@ -3,29 +3,35 @@
 #include <sstream>
 #include <cstdlib>
 
-#include "string/basics/273.integer-to-english-words.cpp"
+#include "string/advanced/68.text-justification.cpp"
 
 using namespace std;
 
 template<class T>
-void print(vector<T> &vec) {
+void print(const vector<T> &vec) {
     stringstream os;
-    os << "[ ";
+//    os << "[ ";
     for (T val : vec) {
-        os << val << ", ";
+        os << "\"" << val << "\",\n";
     }
-    os << "]";
+//    os << "]";
     cout << os.str() << endl;
 }
 
 int main() {
     Solution s;
 //    cout << "\"" << s.decode(130, 0) << "\"" << endl;
-    cout << "\"" << s.numberToWords(0) << "\"" << endl;
-    cout << "\"" << s.numberToWords(19) << "\"" << endl;
-    cout << "\"" << s.numberToWords(123) << "\"" << endl;
-    cout << "\"" << s.numberToWords(12345) << "\"" << endl;
-    cout << "\"" << s.numberToWords(1234567) << "\"" << endl;
-    cout << "\"" << s.numberToWords(1234567891) << "\"" << endl;
+    vector<string> vs = {"This", "is", "an", "example", "of", "text", "justification."};
+    print(s.fullJustify(vs, 16));
+
+    vs = {"What","must","be","acknowledgment","shall","be"};
+    print(s.fullJustify(vs, 16));
+
+    vs = {"Science","is","what","we","understand","well","enough","to","explain", "to","a","computer.","Art","is",
+          "everything","else","we","do"};
+    print(s.fullJustify(vs, 20));
+
+    vs = {"a"};
+    print(s.fullJustify(vs, 2));
     return 0;
 }

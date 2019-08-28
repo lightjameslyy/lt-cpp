@@ -89,9 +89,64 @@
  * 
  * 
  */
+
+#include <vector>
+#include <string>
+
+using namespace std;
+
 class Solution {
 public:
-    vector<string> fullJustify(vector<string>& words, int maxWidth) {
-        
+
+    string makeLine(vector<string> &words, int maxWidth, int sumLength, int prevIndex, int i) {
+        string spaces = ""; // maxWidth spaces
+        spaces.append(maxWidth, ' ');
+        int wordCount = i - prevIndex;
+        int div = 1, rem = 0;
+        if (i < words.size() - 1) {
+            int spacesCount = maxWidth - sumLength;
+            div = (wordCount > 1) ? spacesCount / (wordCount - 1) : 0;
+            rem = (wordCount > 1) ? spacesCount % (wordCount - 1) : 0;
+        }
+        int jj = 0;
+        for (int j = 1; j <= wordCount; ++j) {
+            spaces.replace(jj, words[prevIndex + j].length(), words[prevIndex + j]);
+            jj += words[prevIndex + j].length();
+            if (j == wordCount) break;
+            jj += div;
+            if (rem) {
+                jj++;
+                rem--;
+            }
+        }
+        return spaces;
+    }
+
+    vector<string> fullJustify(vector<string> &words, int maxWidth) {
+        vector<string> res;
+        int prevIndex = -1;
+        int sumLength = 0;
+        int minWidth = 0;
+        for (int i = 0; i < words.size(); ++i) {
+            sumLength += words[i].length();
+            minWidth += words[i].length();
+            if (i - prevIndex >= 2) {
+                minWidth++; // add a space
+            }
+            if (minWidth >= maxWidth) {
+                if (minWidth > maxWidth) {
+                    sumLength -= words[i].length();
+                    i--;
+                }
+                res.push_back(makeLine(words, maxWidth, sumLength, prevIndex, i));
+                prevIndex = i;
+                minWidth = sumLength = 0;
+            } else {
+                if (i == words.size() - 1) {
+                    res.push_back(makeLine(words, maxWidth, sumLength, prevIndex, i));
+                }
+            }
+        }
+        return res;
     }
 };
