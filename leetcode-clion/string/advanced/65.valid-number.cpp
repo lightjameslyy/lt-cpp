@@ -48,9 +48,126 @@
  * button to reset your code definition.
  * 
  */
+
+#include <string>
+#include <cctype>
+
+using namespace std;
+
 class Solution {
 public:
+
+    string trim(const string &s) {
+        int pos = s.find_first_not_of(" \r\n\t");
+        if (pos == string::npos)
+            return "";
+        int len = s.find_last_not_of(" \r\n\t") - pos + 1;
+        return s.substr(pos, len);
+    }
+
     bool isNumber(string s) {
-        
+        enum State {
+            START,
+            SIGN,
+            INT,
+            POINT,
+            INTPOINT,
+            FLOAT,
+            HALFE,
+            HALFESIGN,
+            E
+        };
+        State state = START;
+        for (char c : trim(s)) {
+            switch (state) {
+                case START: {
+                    if (c == '+' | c == '-') {
+                        state = SIGN;
+                    } else if (isdigit(c)) {
+                        state = INT;
+                    } else if (c == '.') {
+                        state = POINT;
+                    } else
+                        return false;
+                    break;
+                }
+                case SIGN: {
+                    if (c == '.') {
+                        state = POINT;
+                    } else if (isdigit(c)) {
+                        state = INT;
+                    } else
+                        return false;
+                    break;
+                }
+                case INT: {
+                    if (isdigit(c)) {
+                        break;
+                    } else if (c == '.') {
+                        state = INTPOINT;
+                    } else if (c == 'e') {
+                        state = HALFE;
+                    } else
+                        return false;
+                    break;
+                }
+                case POINT: {
+                    if (isdigit(c)) {
+                        state = FLOAT;
+                    } else
+                        return false;
+                    break;
+                }
+                case INTPOINT: {
+                    if (isdigit(c)) {
+                        state = FLOAT;
+                    } else if (c == 'e') {
+                        state = HALFE;
+                    } else
+                        return false;
+                    break;
+                }
+                case FLOAT: {
+                    if (isdigit(c)) {
+                        break;
+                    } else if (c == 'e') {
+                        state = HALFE;
+                    } else
+                        return false;
+                    break;
+                }
+                case HALFE: {
+                    if (c == '+' || c == '-') {
+                        state = HALFESIGN;
+                    } else if (isdigit(c)) {
+                        state = E;
+                    } else
+                        return false;
+                    break;
+                }
+                case HALFESIGN: {
+                    if (isdigit(c)) {
+                        state = E;
+                    } else
+                        return false;
+                    break;
+                }
+                case E: {
+                    if (!isdigit(c))
+                        return false;
+                    break;
+                }
+            }
+        }
+        switch (state) {
+            case INT:
+            case INTPOINT:
+            case FLOAT:
+            case E:
+                return true;
+            default:
+                break;
+        }
+        return false;
     }
 };
