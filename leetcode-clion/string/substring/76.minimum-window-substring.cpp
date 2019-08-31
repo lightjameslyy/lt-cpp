@@ -31,9 +31,58 @@
  * 
  * 
  */
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
 class Solution {
 public:
     string minWindow(string s, string t) {
-        
+        if (s.length() < t.length() || t.empty()) return "";
+        vector<int> tmap(128, 0), smap(128, 0);
+        int uniqs = 0, included = 0;
+        // build map for t
+        for (char c : t) tmap[c]++;
+        for (int count : tmap) uniqs += (count != 0);
+        // find first right pos that s[0, right] holds t
+        int right = -1;
+        for (int i = 0; i < s.length(); ++i) {
+            smap[s[i]]++;
+            if (smap[s[i]] == tmap[s[i]] && ++included == uniqs) {
+                right = i;
+                break;
+            }
+        }
+        if (right == -1) return "";
+        int left = 0;
+        int res_left = left, res_right = right;
+        // slide window
+        for (; right < s.length();) {
+            // move left forward to shrink
+            for (; left <= right; ++left) {
+                if (tmap[s[left]]) {
+                    if (smap[s[left]] > tmap[s[left]]) {
+                        smap[s[left]]--;
+                    } else // ==
+                        break;
+                }
+            }
+            // update window
+            if (right - left < res_right - res_left)
+                res_left = left, res_right = right;
+            // if optimal, return
+            if (res_right - res_left + 1 == t.length())
+                return s.substr(res_left, res_right - res_left + 1);
+            char lost = s[left++];
+            // move right forward to find lost
+            for (++right; right < s.length(); ++right) {
+                if (s[right] == lost)
+                    break;
+                smap[s[right]]++;
+            }
+        }
+        return s.substr(res_left, res_right - res_left + 1);
     }
 };

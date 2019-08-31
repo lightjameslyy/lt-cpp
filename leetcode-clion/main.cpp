@@ -5,32 +5,24 @@
 
 #include "utils.h"
 
-#include "string/advanced/65.valid-number.cpp"
+#include "string/substring/76.minimum-window-substring.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    vector<string> strs = {
-            "0",
-            " 0.1 ",
-            "abc",
-            "1 a",
-            "2e10",
-            " -90e3   ",
-            " 1e",
-            "e3",
-            " 6e-1",
-            " 99e2.5    ",
-            "53.5e93",
-            " --6 ",
-            "-+3",
-            "95a54e53",
-            ""
+    vector<string> ss = {
+            "ADOBECODEBANC",
+            "ADOBECODEBANC",
+            "ADOBECODEBANC"
     };
-    for (const string &str : strs) {
-        cout << quotedString(trim(str)) << endl;
-        cout << quotedString(str) << ": " << (s.isNumber(str) ? "true" : "false") << endl;
+    vector<string> st = {
+            "ABC",
+            "AB",
+            "ABN"
+    };
+    for (int i = 0; i < ss.size(); ++i) {
+        cout << quotedString(s.minWindow(ss[i], st[i])) << endl;
     }
     return 0;
 }
