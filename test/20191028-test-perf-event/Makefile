@@ -6,8 +6,6 @@ CXXFLAGS += -O0
 
 CXXFLAGS += -fopenmp
 
-LDLIBS += -lpapi
-
 SRCS = $(wildcard *.cpp)
 
 OBJS = $(patsubst %.cpp, %.o, $(SRCS))
