@@ -5,24 +5,24 @@
 
 #include "utils.h"
 
-#include "string/substring/76.minimum-window-substring.cpp"
+#include "string/substring/30.substring-with-concatenation-of-all-words.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
     vector<string> ss = {
-            "ADOBECODEBANC",
-            "ADOBECODEBANC",
-            "ADOBECODEBANC"
+            "barfoothefoobarman",
+            "wordgoodgoodgoodbestword",
+            "a"
     };
-    vector<string> st = {
-            "ABC",
-            "AB",
-            "ABN"
+    vector<vector<string>> words = {
+            {"foo", "bar"},
+            {"word", "good", "best", "word"},
+            {"a", "a"}
     };
     for (int i = 0; i < ss.size(); ++i) {
-        cout << quotedString(s.minWindow(ss[i], st[i])) << endl;
+        print(s.findSubstring(ss[i], words[i]));
     }
     return 0;
 }

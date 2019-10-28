@@ -38,9 +38,48 @@
  * 
  * 
  */
+
+/*
+ * ideas: hash table + sliding window
+ * see my leetcode submission for a better solution: inner i, outer j
+ */
+
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
 class Solution {
 public:
-    vector<int> findSubstring(string s, vector<string>& words) {
-        
+    vector<int> findSubstring(string s, vector<string> &words) {
+        vector<int> res;
+        if (words.empty() || words[0].empty() || s.empty())
+            return res;
+        int kWordLen = words[0].length();
+        int kWordCount = words.size();
+        int kFitLen = kWordLen * kWordCount;
+        int sLen = s.length();
+        // 1. get word count
+        unordered_map<string, int> wordsMap;
+        for (const string &word: words)
+            wordsMap[word]++;
+
+        // 2. sliding window
+        for (int i = 0; i <= sLen - kFitLen; ++i) {
+            unordered_map<string, int> tmpMap;
+            int j = 0;
+            for (; j < kWordCount; ++j) {
+                string curWord = s.substr(i+j*kWordLen, kWordLen);
+                if (tmpMap[curWord] == wordsMap[curWord]) { // curWord exceeded
+                    break;
+                } else {
+                    tmpMap[curWord]++;
+                }
+            }
+            if (j == kWordCount) {
+                res.push_back(i);
+            }
+        }
+        return res;
     }
 };
