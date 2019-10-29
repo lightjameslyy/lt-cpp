@@ -5,24 +5,20 @@
 
 #include "utils.h"
 
-#include "string/substring/30.substring-with-concatenation-of-all-words.cpp"
+#include "string/substring/3.longest-substring-without-repeating-characters.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    vector<string> ss = {
-            "barfoothefoobarman",
-            "wordgoodgoodgoodbestword",
-            "a"
+    vector<string> input = {
+            "abcabcbb",
+            "bbbbb",
+            "pwwkew",
+            "abcakjlakLKHIbc2345bb"
     };
-    vector<vector<string>> words = {
-            {"foo", "bar"},
-            {"word", "good", "best", "word"},
-            {"a", "a"}
-    };
-    for (int i = 0; i < ss.size(); ++i) {
-        print(s.findSubstring(ss[i], words[i]));
+    for (int i = 0; i < input.size(); ++i) {
+        cout << s.lengthOfLongestSubstring(input[i]) << endl;
     }
     return 0;
 }
