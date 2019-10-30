@@ -5,20 +5,24 @@
 
 #include "utils.h"
 
-#include "string/substring/3.longest-substring-without-repeating-characters.cpp"
+#include "string/substring/395.longest-substring-with-at-least-k-repeating-characters.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    vector<string> input = {
-            "abcabcbb",
-            "bbbbb",
-            "pwwkew",
-            "abcakjlakLKHIbc2345bb"
+    vector<string> ss = {
+            "aaabb",
+            "ababbc",
+            "aaddddfdgggaawrawwradsfgabb"
     };
-    for (int i = 0; i < input.size(); ++i) {
-        cout << s.lengthOfLongestSubstring(input[i]) << endl;
+    vector<int> ks = {
+            3,
+            2,
+            3
+    };
+    for (int i = 0; i < ss.size(); ++i) {
+        cout << s.longestSubstring(ss[i], ks[i]) << endl;
     }
     return 0;
 }
