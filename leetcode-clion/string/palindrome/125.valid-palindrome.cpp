@@ -32,9 +32,29 @@
  * 
  * 
  */
+
+#include <string>
+#include <locale>
+
+using namespace std;
+
 class Solution {
 public:
+    // two-pointers
+    // 4ms, 9.4MB, 99.34%
     bool isPalindrome(string s) {
-        
+        int slen = s.length();
+        int left = 0, right = slen - 1;
+        while (left < right) {
+            while (left < right && !isalnum(s[left]))
+                left++;
+            while (right > left && !isalnum(s[right]))
+                right--;
+            if (left < right && tolower(s[left]) != tolower(s[right]))
+                return false;
+            left++;
+            right--;
+        }
+        return true;
     }
 };
