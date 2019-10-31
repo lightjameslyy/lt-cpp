@@ -30,9 +30,31 @@
  * Explanation: t is "aabbb" which its length is 5.
  * 
  */
+
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
+    // hash + sliding window
+    // 8ms, 9.1MB, 75.44%
     int lengthOfLongestSubstringTwoDistinct(string s) {
-        
+        int maxLen = 0;
+        int left = 0;
+        vector<int> charMap(256, 0);
+        int cnt = 0;
+        for (int right = 0; right < s.length(); ++right) {
+            if (charMap[s[right]]++ == 0)
+                cnt++;
+            while (cnt > 2) {
+                if (--charMap[s[left]] == 0)
+                    cnt--;
+                left++;
+            }
+            maxLen = max(maxLen, right - left + 1);
+        }
+        return maxLen;
     }
 };
