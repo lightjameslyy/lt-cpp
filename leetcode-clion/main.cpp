@@ -5,19 +5,18 @@
 
 #include "utils.h"
 
-#include "string/palindrome/9.palindrome-number.cpp"
+#include "string/palindrome/214.shortest-palindrome.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    vector<int> x = {
-            121,
-            -121,
-            10
+    vector<string> ss = {
+            "aacecaaa",
+            "abcd"
     };
-    for (int i = 0; i < x.size(); ++i) {
-        cout << s.isPalindrome(x[i]) << endl;
+    for (int i = 0; i < ss.size(); ++i) {
+        cout << s.shortestPalindrome(ss[i]) << endl;
     }
     return 0;
 }
