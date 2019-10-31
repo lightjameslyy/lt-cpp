@@ -5,18 +5,19 @@
 
 #include "utils.h"
 
-#include "string/palindrome/5.longest-palindromic-substring.cpp"
+#include "string/palindrome/9.palindrome-number.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    vector<string> ss = {
-            "babad",
-            "cbbd"
+    vector<int> x = {
+            121,
+            -121,
+            10
     };
-    for (int i = 0; i < ss.size(); ++i) {
-        cout << s.longestPalindrome(ss[i]) << endl;
+    for (int i = 0; i < x.size(); ++i) {
+        cout << s.isPalindrome(x[i]) << endl;
     }
     return 0;
 }
