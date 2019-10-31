@@ -33,9 +33,25 @@
  * Output: true
  * 
  */
+
+using namespace std;
+
 class Solution {
 public:
+    // statistics in hash
+    // 0mx, 8.3MB, 100%
     bool canPermutePalindrome(string s) {
-        
+        int countMap[256] = {0};
+        for (char c : s) {
+            countMap[c]++;
+        }
+        int oddCount = 0;
+        for (int i = 0; i < 256; ++i) {
+            if (countMap[i] % 2 != 0)
+                oddCount++;
+            if (oddCount > 1)
+                return false;
+        }
+        return true;
     }
 };

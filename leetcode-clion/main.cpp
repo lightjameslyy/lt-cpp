@@ -5,18 +5,19 @@
 
 #include "utils.h"
 
-#include "string/palindrome/125.valid-palindrome.cpp"
+#include "string/palindrome/266.palindrome-permutation.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
     vector<string> ss = {
-            "A man, a plan, a canal: Panama",
-            "race a car"
+            "code",
+            "aab",
+            "carerac"
     };
     for (int i = 0; i < ss.size(); ++i) {
-        cout << s.isPalindrome(ss[i]) << endl;
+        cout << s.canPermutePalindrome(ss[i]) << endl;
     }
     return 0;
 }
