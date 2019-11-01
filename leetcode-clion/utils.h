@@ -39,7 +39,7 @@ void print(const vector<T> &vec) {
         os << val << ", ";
     }
     os << "]";
-    cout << os.str() << endl;
+    cout << os.str();
 }
 
 #endif //LEETCODE_CLION_UTILS_H
