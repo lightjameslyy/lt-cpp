@@ -5,7 +5,7 @@
 
 #include "utils.h"
 
-#include "string/palindrome/267.palindrome-permutation-ii.cpp"
+#include "string/parentheses/20.valid-parentheses.cpp"
 
 using namespace std;
 
@@ -13,14 +13,16 @@ int main() {
     Solution s;
     vector<string> ss = {
             "",
-            "abc",
-            "aabb",
-            "abacaabcc"
+            "()",
+            "()[]{}",
+            "(]",
+            "([)]",
+            "{[]}",
+            "[",
+            "]"
     };
     for (int i = 0; i < ss.size(); ++i) {
-        //s.generatePalindromes(ss[i]);
-        print(s.generatePalindromes(ss[i]));
-        cout << endl;
+        cout << s.isValid(ss[i]) << endl;
     }
     return 0;
 }

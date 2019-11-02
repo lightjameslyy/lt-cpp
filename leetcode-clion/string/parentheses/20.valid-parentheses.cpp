@@ -59,9 +59,51 @@
  * 
  * 
  */
+
+#include <stack>
+
+using namespace std;
+
 class Solution {
 public:
+    bool isLeft(char c) {
+        return c == '(' || c == '[' || c == '{';
+    }
+
+    bool isRight(char c) {
+        return c == ')' || c == ']' || c == '}';
+    }
+
+    char getLeft(char c) {
+        switch (c) {
+            case ')':
+                return '(';
+            case ']':
+                return '[';
+            case '}':
+                return '{';
+            default:
+                return 0;
+        }
+    }
+
+    // stack
+    // 0ms, 8.4MB, 100%
     bool isValid(string s) {
-        
+        stack<char> parStack;
+        for (char c : s) {
+            if (isLeft(c)) {
+                parStack.push(c);
+            } else if (isRight(c)) {
+                // in case of more right brackets
+                if (parStack.empty() || getLeft(c) != parStack.top())
+                    return false;
+                parStack.pop();
+            } else {
+                return false;
+            }
+        }
+        // in case of more left brackets
+        return parStack.empty();
     }
 };
