@@ -5,24 +5,22 @@
 
 #include "utils.h"
 
-#include "string/palindrome/336.palindrome-pairs.cpp"
+#include "string/palindrome/131.palindrome-partitioning.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    vector<vector<string>> ss = {
-            {"abcd", "dcba", "lls", "s", "sssll"},
-            {"bat",  "tab",  "cat"},
-            {"a",    "abc",  "aba", ""}
+    vector<string> ss = {
+            "aab",
+            "aababac",
+            ""
     };
     for (int i = 0; i < ss.size(); ++i) {
-        //cout << s.palindromePairs(ss[i]) << endl;
-        for (auto &vec : s.palindromePairs(ss[i])) {
-            print(vec);
-            cout << ", ";
+        for (auto &ps : s.partition(ss[i])) {
+            print(ps);
+            cout << endl;
         }
-        cout << endl;
     }
     return 0;
 }
