@@ -5,15 +5,18 @@
 
 #include "utils.h"
 
-#include "string/parentheses/22.generate-parentheses.cpp"
+#include "string/parentheses/32.longest-valid-parentheses.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    print(s.generateParenthesis(3));
-    cout << endl;
-    print(s.generateParenthesis(0));
-    cout << endl;
+    vector<string> input = {
+            "",
+            "(()",
+            ")()())"
+    };
+    for (int i = 0; i < input.size(); ++i)
+        cout << s.longestValidParentheses(input[i]) << endl;
     return 0;
 }
