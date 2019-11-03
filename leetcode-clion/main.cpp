@@ -5,24 +5,15 @@
 
 #include "utils.h"
 
-#include "string/parentheses/20.valid-parentheses.cpp"
+#include "string/parentheses/22.generate-parentheses.cpp"
 
 using namespace std;
 
 int main() {
     Solution s;
-    vector<string> ss = {
-            "",
-            "()",
-            "()[]{}",
-            "(]",
-            "([)]",
-            "{[]}",
-            "[",
-            "]"
-    };
-    for (int i = 0; i < ss.size(); ++i) {
-        cout << s.isValid(ss[i]) << endl;
-    }
+    print(s.generateParenthesis(3));
+    cout << endl;
+    print(s.generateParenthesis(0));
+    cout << endl;
     return 0;
 }
