@@ -37,9 +37,49 @@
  * (((2*3)-4)*5) = 10
  * 
  */
+
+#include <vector>
+#include <cctype>
+#include <cstdlib>
+
+using namespace std;
+
 class Solution {
 public:
+    int calculate(int a, int b, char op) {
+        switch (op) {
+            case '+':
+                return a + b;
+            case '-':
+                return a - b;
+            case '*':
+                return a * b;
+            default:
+                return 0;
+        }
+    }
+
+    vector<int> helper(const string &input, int left, int right) {
+        vector<int> res;
+        for (int i = left; i <= right; ++i) {
+            if (!isdigit(input[i])) {   // input[i] is op
+                vector<int> res_left = helper(input, left, i - 1);
+                vector<int> res_right = helper(input, i + 1, right);
+                for (int l : res_left) {
+                    for (int r : res_right)
+                        res.push_back(calculate(l, r, input[i]));
+                }
+            }
+        }
+        if (res.empty()) {  // no op wthin input[left, right]
+            res.push_back(atoi(input.substr(left, right - left + 1).c_str()));
+        }
+        return res;
+    }
+
+    // divide and conquer
+    // 8ms, 13.3MB, 41.77%
     vector<int> diffWaysToCompute(string input) {
-        
+        return helper(input, 0, input.length() - 1);
     }
 };
