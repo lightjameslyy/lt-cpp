@@ -5,23 +5,26 @@
 
 #include "utils.h"
 
-#include "string/parentheses/301.remove-invalid-parentheses.cpp"
+#include "string/subsequence/392.is-subsequence.cpp"
 
 using namespace std;
 
 int main() {
-    Solution s;
-    vector<string> input = {
+    Solution sol;
+    vector<string> s = {
             "",
-            "()())()",
-            "(a)())()",
-            ")(",
-            ")(f",
-            ")()("
+            "abc",
+            "axc",
+            "b"
     };
-    for (int i = 0; i < input.size(); ++i) {
-        print(s.removeInvalidParentheses(input[i]));
-        cout << endl;
+    vector<string> t = {
+            "",
+            "ahbgdc",
+            "ahbgdc",
+            "c"
+    };
+    for (int i = 0; i < s.size(); ++i) {
+        cout << sol.isSubsequence(s[i], t[i]) << endl;
     }
 
     return 0;
