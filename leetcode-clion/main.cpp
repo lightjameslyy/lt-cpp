@@ -5,7 +5,7 @@
 
 #include "utils.h"
 
-#include "string/subsequence/392.is-subsequence.cpp"
+#include "string/subsequence/115.distinct-subsequences.cpp"
 
 using namespace std;
 
@@ -13,18 +13,16 @@ int main() {
     Solution sol;
     vector<string> s = {
             "",
-            "abc",
-            "axc",
-            "b"
+            "rabbbit",
+            "babgbag"
     };
     vector<string> t = {
             "",
-            "ahbgdc",
-            "ahbgdc",
-            "c"
+            "rabbit",
+            "bag"
     };
     for (int i = 0; i < s.size(); ++i) {
-        cout << sol.isSubsequence(s[i], t[i]) << endl;
+        cout << sol.numDistinct(s[i], t[i]) << endl;
     }
 
     return 0;
