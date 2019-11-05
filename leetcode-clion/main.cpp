@@ -5,19 +5,19 @@
 
 #include "utils.h"
 
-#include "string/subsequence/187.repeated-dna-sequences.cpp"
+#include "math/basic/7.reverse-integer.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<string> s = {
-            "",
-            "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+    vector<int> vals = {
+            123,
+            -123,
+            120
     };
-    for (int i = 0; i < s.size(); ++i) {
-        print(sol.findRepeatedDnaSequences(s[i]));
-        cout << endl;
+    for (int i = 0; i < vals.size(); ++i) {
+        cout << sol.reverse(vals[i]) << endl;
     }
 
     return 0;
