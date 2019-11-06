@@ -5,20 +5,22 @@
 
 #include "utils.h"
 
-#include "math/basic/66.plus-one.cpp"
+#include "math/basic/8.string-to-integer-atoi.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<vector<int>> digits = {
-            {1, 2, 3},
-            {4, 3, 2, 1},
-            {9, 9, 9}
+    vector<string> s = {
+            "42",
+            "    -42",
+            "4193 aejofi josdf",
+            "uhajf iasj 987",
+            "-9283758234765234",
+            "2147483646"
     };
-    for (int i = 0; i < digits.size(); ++i) {
-        print(sol.plusOne(digits[i]));
-        cout << endl;
+    for (int i = 0; i < s.size(); ++i) {
+        cout << sol.myAtoi(s[i]) << endl;
     }
 
     return 0;
