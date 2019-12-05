@@ -5,26 +5,22 @@
 
 #include "utils.h"
 
-#include "math/basic/29.divide-two-integers.cpp"
+#include "math/basic/69.sqrtx.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<int> dividend = {
-            1 << 31,
-            -2147483648,
-            10,
-            7
-    };
-    vector<int> divisor = {
-            -1,
+    vector<int> x = {
             1,
-            3,
-            -3
+            4,
+            8,
+            9,
+            12,
+            100
     };
-    for (int i = 0; i < dividend.size(); ++i) {
-        cout << sol.divide(dividend[i], divisor[i]) << endl;
+    for (int i = 0; i < x.size(); ++i) {
+        cout << sol.mySqrt(x[i]) << endl;
     }
 
     return 0;
