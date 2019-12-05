@@ -5,23 +5,28 @@
 
 #include "utils.h"
 
-#include "math/basic/43.multiply-strings.cpp"
+#include "math/basic/29.divide-two-integers.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<string> a = {
-            "2",
-            "123"
+    vector<int> dividend = {
+            1 << 31,
+            -2147483648,
+            10,
+            7
     };
-    vector<string> b = {
-            "3",
-            "456"
+    vector<int> divisor = {
+            -1,
+            1,
+            3,
+            -3
     };
-    for (int i = 0; i < a.size(); ++i) {
-        cout << sol.multiply(a[i], b[i]) << endl;
+    for (int i = 0; i < dividend.size(); ++i) {
+        cout << sol.divide(dividend[i], divisor[i]) << endl;
     }
 
     return 0;
 }
+
