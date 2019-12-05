@@ -5,22 +5,24 @@
 
 #include "utils.h"
 
-#include "math/basic/69.sqrtx.cpp"
+#include "math/basic/50.powx-n.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<int> x = {
-            1,
-            4,
-            8,
-            9,
-            12,
-            100
+    vector<double> x = {
+            2.0,
+            2.1,
+            2.0
+    };
+    vector<int> n = {
+            10,
+            3,
+            -2
     };
     for (int i = 0; i < x.size(); ++i) {
-        cout << sol.mySqrt(x[i]) << endl;
+        cout << sol.myPow(x[i], n[i]) << endl;
     }
 
     return 0;
