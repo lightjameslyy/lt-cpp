@@ -5,19 +5,17 @@
 
 #include "utils.h"
 
-#include "math/basic/367.valid-perfect-square.cpp"
+#include "math/basic/365.water-and-jug-problem.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<int> n = {
-            1,
-            16,
-            14
-    };
-    for (int i = 0; i < n.size(); ++i) {
-        cout << sol.isPerfectSquare(n[i]) << endl;
+    vector<int> x = {3, 2};
+    vector<int> y = {5, 6};
+    vector<int> z = {4, 5};
+    for (int i = 0; i < x.size(); ++i) {
+        cout << sol.canMeasureWater(x[i], y[i], z[i]) << endl;
     }
 
     return 0;
