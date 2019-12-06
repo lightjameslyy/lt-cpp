@@ -5,17 +5,15 @@
 
 #include "utils.h"
 
-#include "math/basic/365.water-and-jug-problem.cpp"
+#include "math/basic/204.count-primes.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<int> x = {3, 2};
-    vector<int> y = {5, 6};
-    vector<int> z = {4, 5};
-    for (int i = 0; i < x.size(); ++i) {
-        cout << sol.canMeasureWater(x[i], y[i], z[i]) << endl;
+    vector<int> n = {10};
+    for (int i = 0; i < n.size(); ++i) {
+        cout << sol.countPrimes(n[i]) << endl;
     }
 
     return 0;
