@@ -5,24 +5,19 @@
 
 #include "utils.h"
 
-#include "math/basic/50.powx-n.cpp"
+#include "math/basic/367.valid-perfect-square.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<double> x = {
-            2.0,
-            2.1,
-            2.0
-    };
     vector<int> n = {
-            10,
-            3,
-            -2
+            1,
+            16,
+            14
     };
-    for (int i = 0; i < x.size(); ++i) {
-        cout << sol.myPow(x[i], n[i]) << endl;
+    for (int i = 0; i < n.size(); ++i) {
+        cout << sol.isPerfectSquare(n[i]) << endl;
     }
 
     return 0;
