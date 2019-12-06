@@ -5,16 +5,14 @@
 
 #include "utils.h"
 
-#include "math/basic/204.count-primes.cpp"
+#include "math/sum/1.two-sum.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<int> n = {10};
-    for (int i = 0; i < n.size(); ++i) {
-        cout << sol.countPrimes(n[i]) << endl;
-    }
+    vector<int> nums = {2, 7, 11, 15};
+    print(sol.twoSum(nums, 9));
 
     return 0;
 }
