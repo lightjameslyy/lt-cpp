@@ -5,7 +5,7 @@
 
 #include "utils.h"
 
-#include "math/sum/1.two-sum.cpp"
+#include "math/sum/167.two-sum-ii-input-array-is-sorted.cpp"
 
 using namespace std;
 
