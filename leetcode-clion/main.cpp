@@ -5,15 +5,24 @@
 
 #include "utils.h"
 
-#include "math/sum/167.two-sum-ii-input-array-is-sorted.cpp"
+#include "math/sum/15.3sum.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<int> nums = {2, 7, 11, 15};
-    print(sol.twoSum(nums, 9));
-
+    vector<vector<int>> vnums = {
+            {-1, 0,  1,  2, -1, -4},
+            {0,  0,  0},
+            {-2, -2, -2, 0, 0,  0, 1, 1, 1, 1, 1, 2}
+    };
+    for (auto nums : vnums) {
+        for (auto res : sol.threeSum(nums)) {
+            print(res);
+            cout << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
 
