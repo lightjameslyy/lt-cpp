@@ -5,20 +5,26 @@
 
 #include "utils.h"
 
-#include "math/sum/259.3sum-smaller.cpp"
+#include "math/sum/18.4sum.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
     vector<vector<int>> vnums = {
-            {-2, 0, 1, 3}
+            {1,  0,  -1, 0,  -2, 2},
+            {-1, -5, -5, -3, 2,  5, 0, 4}
     };
     vector<int> target = {
-            2
+            0,
+            -7
     };
     for (int i = 0; i < target.size(); ++i) {
-        cout << sol.threeSumSmaller(vnums[i], target[i]) << endl;
+        for (auto res : sol.fourSum(vnums[i], target[i])) {
+            print(res);
+            cout << " ";
+        }
+        cout << endl;
     }
     return 0;
 }
