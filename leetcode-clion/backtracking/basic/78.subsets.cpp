@@ -39,14 +39,11 @@ using namespace std;
 
 class Solution {
 public:
-
     void dfs(const vector<int> &nums, int pos, vector<int> &cur, vector<vector<int>> &res) {
-        if (pos == nums.size()) {
-            res.push_back(cur);
-            return;
-        }
+        res.push_back(cur);
+
         for (int i = pos; i < nums.size(); ++i) {
-            cur.push_back(nums[pos]);
+            cur.push_back(nums[i]);
             dfs(nums, i + 1, cur, res);
             cur.pop_back();
         }
@@ -55,8 +52,7 @@ public:
     vector<vector<int>> subsets(vector<int> &nums) {
         vector<vector<int>> res;
         vector<int> cur;
-        for (int pos = 0; pos <= nums.size(); ++pos)
-            dfs(nums, pos, cur, res);
+        dfs(nums, 0, cur, res);
         return res;
     }
 };
