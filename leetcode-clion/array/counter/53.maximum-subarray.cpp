@@ -28,9 +28,14 @@
  * the divide and conquer approach, which is more subtle.
  * 
  */
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
-    int maxSubArray1(vector<int>& nums) {
+    int maxSubArray1(vector<int> &nums) {
         int size = nums.size();
         if (size == 0)
             return 0;
@@ -51,8 +56,8 @@ public:
         return maxsum;
     }
 
-    int maxSubArray(vector<int>& nums) {
-        if (nums.size() == 0) 
+    int maxSubArray2(vector<int> &nums) {
+        if (nums.size() == 0)
             return 0;
         int sum = 0;
         int max = nums[0];
@@ -66,5 +71,17 @@ public:
             }
         }
         return max;
+    }
+
+    int maxSubArray(vector<int> &nums) {
+        int size = nums.size();
+        if (!size) return 0;
+        int res = nums[0];
+        for (int i = 1; i < size; ++i) {
+            if (nums[i - 1] > 0)
+                nums[i] += nums[i - 1];
+            res = max(res, nums[i]);
+        }
+        return res;
     }
 };
