@@ -4,8 +4,6 @@ include ../../make.inc
 
 CXXFLAGS += -O0
 
-CXXFLAGS += -DLT_TEST_ALIGNED
-
 SRCS = $(wildcard *.cpp)
 
 OBJS = $(patsubst %.cpp, %.o, $(SRCS))
