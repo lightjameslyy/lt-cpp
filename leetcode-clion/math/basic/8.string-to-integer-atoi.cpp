@@ -95,7 +95,7 @@ public:
     int myAtoi(string str) {
         int len = str.length();
         int i = 0;
-        while (i < len && str[i] != ' ') {
+        while (i < len && str[i] == ' ') {
             i++;
         }
         if (i == len)
