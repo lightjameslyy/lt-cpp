@@ -4,6 +4,8 @@ include ../../make.inc
 
 CXXFLAGS += -O0
 
+INC = -I..
+
 CXXFLAGS += -fopenmp
 
 SRCS = $(wildcard *.cpp)
