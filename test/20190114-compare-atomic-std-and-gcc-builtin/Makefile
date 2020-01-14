@@ -2,7 +2,7 @@
 
 include ../../make.inc
 
-CXXFLAGS += -O0
+CXXFLAGS += -O3
 
 INC = -I..
 

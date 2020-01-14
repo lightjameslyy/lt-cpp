@@ -17,8 +17,16 @@ int main(int argc, char* argv[]) {
     }
     cout << "hostname: " << hostName << ", ip: " << Ip << endl;
 
-    omp_set_num_threads(8);
-    size_t nTasks = 1LL << 30;
+    if (argc < 3) {
+        printf("Usage: \n./<exefile> <nThreads> <taskScale>\n");
+        exit(EXIT_FAILURE);
+    }
+
+    int nThreads = atoi(argv[1]);
+    int taskScale = atoi(argv[2]);
+
+    omp_set_num_threads(nThreads);
+    size_t nTasks = 1LL << taskScale;
 
     auto start = system_clock::now();
 
@@ -29,11 +37,11 @@ int main(int argc, char* argv[]) {
         while(true) {
             size_t nextId = nextTask1.fetch_add(1);
             if (nextId >= nTasks) {
-                printf("tid: %d, nextId: %lu\n", tid, nextId);
                 break;
             }
         }
     }
+    printf("nextTask1: %lu\n", nextTask1.load());
 
     auto end = system_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
@@ -48,11 +56,11 @@ int main(int argc, char* argv[]) {
         while(true) {
             size_t nextId = __atomic_fetch_add(&nextTask2, 1, __ATOMIC_SEQ_CST);
             if (nextId >= nTasks) {
-                printf("tid: %d, nextId: %lu\n", tid, nextId);
                 break;
             }
         }
     }
+    printf("nextTask2: %lu\n", nextTask2);
 
     end = system_clock::now();
     duration = duration_cast<microseconds>(end - start);
@@ -65,13 +73,13 @@ int main(int argc, char* argv[]) {
     {
         int tid = omp_get_thread_num();
         while(true) {
-            size_t nextId = __sync_fetch_and_add(&nextTask3, 1); 
+            size_t nextId = __sync_fetch_and_add(&nextTask3, 1);
             if (nextId >= nTasks) {
-                printf("tid: %d, nextId: %lu\n", tid, nextId);
                 break;
             }
         }
     }
+    printf("nextTask3: %lu\n", nextTask3);
 
     end = system_clock::now();
     duration = duration_cast<microseconds>(end - start);
