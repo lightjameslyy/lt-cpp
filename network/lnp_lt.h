@@ -3,6 +3,7 @@
  */
 
 #include <cstdio>
+#include <arpa/inet.h>
 
 bool isHostBigEndian();
 
