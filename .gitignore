@@ -3,6 +3,10 @@
 *.bin
 *.exe
 
+# Libraries
+*.a
+*.so
+
 # vscode
 vscode-markdown.css
 .vscode/

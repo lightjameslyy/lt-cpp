@@ -2,7 +2,7 @@
 #include "lnp_lt.h"
 
 TEST(lnp, isHostBigEndian) {
-    isHostBigEndian();
+    lt::isHostBigEndian();
 }
 
 TEST(lnp, byteOrderConversion) {
