@@ -7,7 +7,7 @@ CXX = g++
 CXXFLAGS = -O3 -std=c++11 -g -fPIC
 ECXXFLAGS = 
 INC = -I..
-LDFLAGS = 
+LDFLAGS = ../liblnp.a
 LDLIBS =
 
 SRCS = $(wildcard *.cpp)

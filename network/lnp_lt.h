@@ -8,6 +8,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <signal.h>
+#include <errno.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,6 +17,9 @@
 namespace lt {
 
 bool isHostBigEndian();
+
+ssize_t readn(int fd, void *buf, size_t count);
+ssize_t writen(int fd, const void *buf, size_t count);
 
 // errors
 namespace err {
