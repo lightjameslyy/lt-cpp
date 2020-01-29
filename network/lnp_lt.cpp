@@ -44,4 +44,43 @@ ssize_t writen(int fd, const void* buf, size_t count) {
     return count;
 }
 
+ssize_t recvpeek(int sockfd, void* buf, size_t len) {
+    while(1) {
+        int ret = recv(sockfd, buf, len, MSG_PEEK);
+        if(ret == -1 && errno == EINTR)
+            continue;
+        return ret;
+    }
+}
+
+ssize_t readline(int sockfd, void* buf, size_t maxlen) {
+    int nRead;
+    int nLeft = maxlen;
+    char* bufp = (char*)buf;
+    while (1) {
+        int ret = recvpeek(sockfd, bufp, nLeft);
+        if (ret < 0)
+            return ret;
+        if (ret == 0)
+            return ret;
+        nRead = ret;
+        for (int i = 0; i < nRead; ++i) {
+            if (bufp[i] == '\n') {
+                ret = readn(sockfd, bufp, i + 1);
+                if (ret != i + 1)
+                    err::Exit("readn");
+                return ret;
+            }
+        }
+        if (nRead > nLeft)
+            exit(EXIT_FAILURE);
+        nLeft -= nRead;
+        ret = readn(sockfd, bufp, nRead);
+        if (ret != nRead)
+            err::Exit("readn");
+        bufp += nRead;
+    }
+    return -1;
+}
+
 }   // namespace lt
