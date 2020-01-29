@@ -18,6 +18,12 @@ namespace lt {
 
 bool isHostBigEndian();
 
+template<size_t N>
+struct EchoPacket {
+    int len;
+    char buf[N]; 
+};
+
 ssize_t readn(int fd, void *buf, size_t count);
 ssize_t writen(int fd, const void *buf, size_t count);
 
