@@ -53,6 +53,9 @@ int write_timeout(int fd, unsigned int wait_seconds);
 int accept_timeout(int fd, struct sockaddr_in* addr, unsigned int wait_seconds);
 int connect_timeout(int fd, struct sockaddr_in* addr, unsigned int wait_seconds);
 
+void send_fd(int sockfd, int sendfd);
+int recv_fd(int sockfd);
+
 // epoll
 namespace epoll {
 

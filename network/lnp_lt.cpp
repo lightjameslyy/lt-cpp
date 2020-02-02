@@ -298,5 +298,79 @@ int connect_timeout(int fd, struct sockaddr_in* addr, unsigned int wait_seconds)
     return ret;
 }
 
+/**
+ * send_fd - 发送描述符字
+ * @sockfd: 套接字
+ * @sendfd: 要发送的描述符字
+ */
+void send_fd(int sockfd, int sendfd) {
+    struct msghdr msg;
+
+    msg.msg_name = NULL;
+    msg.msg_namelen = 0;
+    char sendchar = 0;
+    struct iovec vec;
+    vec.iov_base = &sendchar;
+    vec.iov_len = sizeof(sendchar);
+    msg.msg_iov = &vec;
+    msg.msg_iovlen = 1;
+    msg.msg_flags = 0;
+
+    char cmsgbuf[CMSG_SPACE(sizeof(sendfd))];
+    msg.msg_control = cmsgbuf;
+    msg.msg_controllen = sizeof(cmsgbuf);
+    struct cmsghdr* p_cmsg = CMSG_FIRSTHDR(&msg);
+    p_cmsg->cmsg_level = SOL_SOCKET;
+    p_cmsg->cmsg_type = SCM_RIGHTS;
+    p_cmsg->cmsg_len = CMSG_LEN(sizeof(sendfd));
+    int* p_fds = (int*)CMSG_DATA(p_cmsg);
+    *p_fds = sendfd;
+
+    int ret = sendmsg(sockfd, &msg, 0);
+    if (ret != 1)
+        err::Exit("sendmsg");
+}
+
+/**
+ * recv_fd - 接收描述符字
+ * @sockfd: 套接字
+ * 返回值：接收到的描述符字
+ */
+int recv_fd(int sockfd) {
+    int recvfd;
+    char recvchar = 0;
+    struct msghdr msg;
+    msg.msg_name = NULL;
+    msg.msg_namelen = 0;
+    struct iovec vec;
+    vec.iov_base = &recvchar;
+    vec.iov_len = sizeof(recvchar);
+    msg.msg_iov = &vec;
+    msg.msg_iovlen = 1;
+    msg.msg_flags = 0;
+
+    char cmsgbuf[CMSG_SPACE(sizeof(recvfd))];
+    msg.msg_control = cmsgbuf;
+    msg.msg_controllen = sizeof(cmsgbuf);
+    int* p_fds = (int*)CMSG_DATA(CMSG_FIRSTHDR(&msg));
+    *p_fds = -1;
+
+    int ret = recvmsg(sockfd, &msg, 0);
+    if (ret != 1)
+        err::Exit("recvmsg");
+
+    struct cmsghdr* p_cmsg = CMSG_FIRSTHDR(&msg);
+    if (p_cmsg == NULL)
+        err::Exit("np passed fd");
+
+    p_fds = (int*)CMSG_DATA(p_cmsg);
+    recvfd = *p_fds;
+    if (recvfd == -1)
+        err::Exit("no passed fd");
+
+    return recvfd;
+
+}
+
 
 }   // namespace lt
