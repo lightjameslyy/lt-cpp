@@ -1,3 +1,6 @@
+#ifndef LNP_LT_H_
+#define LNP_LT_H_
+
 /*
  * Linux Network Programming header file by liutao.
  */
@@ -84,3 +87,5 @@ inline void Exit(const char* fmt) {
 }   // namespace err
 
 }   // namespace lt
+
+#endif  // LNP_LT_H_
