@@ -14,6 +14,8 @@
 #include <sys/epoll.h>
 #include <sys/resource.h>
 #include <sys/un.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <signal.h>
