@@ -16,6 +16,9 @@
 #include <sys/un.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include <sys/mman.h>
+#include <sys/shm.h>
+#include <sys/sem.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <signal.h>
@@ -91,6 +94,114 @@ inline void Exit(const char* fmt) {
 }
 
 }   // namespace err
+
+namespace sem {
+
+union semun {
+    int              val;    /* Value for SETVAL */
+    struct semid_ds* buf;    /* Buffer for IPC_STAT, IPC_SET */
+    unsigned short*  array;  /* Array for GETALL, SETALL */
+    struct seminfo*  __buf;  /* Buffer for IPC_INFO (Linux-specific) */
+};
+
+inline int sem_create(key_t key) {
+    int semid = semget(key, 1, IPC_CREAT | IPC_EXCL | 0666);
+    if (semid == -1)
+        err::Exit("semget");
+
+    return semid;
+}
+
+inline int sem_open(key_t key) {
+    int semid = semget(key, 0, 0);
+    if (semid == -1)
+        err::Exit("semget");
+
+    return semid;
+}
+
+inline int sem_setval(int semid, int val) {
+    semun su;
+    su.val = val;
+    int ret = semctl(semid, 0, SETVAL, su);
+    if (ret == -1)
+        err::Exit("sem_setval");
+    return ret;
+}
+
+inline int sem_getval(int semid) {
+    int ret = semctl(semid, 0, GETVAL, 0);
+    if (ret == -1)
+        err::Exit("sem_getval");
+    return ret;
+}
+
+inline int sem_rmid(int semid) {
+    int ret = semctl(semid, 0, IPC_RMID, 0);
+    if (ret == -1)
+        err::Exit("sem_rmid");
+    return ret;
+}
+
+inline int sem_p(int semid) {
+    struct sembuf sops = {0, -1, 0};
+    int ret = semop(semid, &sops, 1);
+    if (ret == -1)
+        err::Exit("semop");
+    return ret;
+}
+
+inline int sem_v(int semid) {
+    struct sembuf sops = {0, 1, 0};
+    int ret = semop(semid, &sops, 1);
+    if (ret == -1)
+        err::Exit("semop");
+    return ret;
+}
+
+inline int sem_p(int semid, int no) {
+    struct sembuf sops = {no, -1, 0};
+    int ret = semop(semid, &sops, 1);
+    if (ret == -1)
+        err::Exit("semop");
+    return ret;
+}
+
+inline int sem_v(int semid, int no) {
+    struct sembuf sops = {no, 1, 0};
+    int ret = semop(semid, &sops, 1);
+    if (ret == -1)
+        err::Exit("semop");
+    return ret;
+}
+}   // namespace sem
+
+namespace shm {
+
+struct shmhead {
+    unsigned int blksize;   // 块大小
+    unsigned int blocks;    // 总块数
+    unsigned int rd_index;  // 读索引
+    unsigned int wr_index;  // 写索引
+};
+
+struct shmfifo {
+    shmhead* p_shm;     // 共享内存头部指针
+    char* p_payload;    // 有效负载的起始地址
+
+    int shmid;          // 共享内存ID
+    int sem_mutex;      // 用于互斥的信号量
+    int sem_full;       // 用于控制共享内存是否满的信号量
+    int sem_empty;      // 用于控制共享内存是否空的信号量
+
+};
+
+shmfifo* shmfifo_init(int key, int blksize, int blocks);
+void shmfifo_put(shmfifo* fifo, const void* buf);
+void shmfifo_get(shmfifo* fifo, void* buf);
+void shmfifo_destroy(shmfifo* fifo);
+
+}   // namespace shm
 
 }   // namespace lt
 

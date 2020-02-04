@@ -372,5 +372,88 @@ int recv_fd(int sockfd) {
 
 }
 
+namespace shm {
+
+shmfifo* shmfifo_init(int key, int blksize, int blocks) {
+    shmfifo* fifo = (shmfifo*)malloc(sizeof(shmfifo));
+    if (fifo == NULL) {
+        fprintf(stderr, "malloc failed");
+        exit(EXIT_FAILURE);
+    }
+    memset(fifo, 0, sizeof(shmfifo));
+
+    int shmid = shmget(key, 0, 0);
+    if (shmid == -1) {
+        fifo->shmid = shmget(key, sizeof(shmhead) + blksize * blocks, IPC_CREAT | 0666);
+        if (fifo->shmid == -1)
+            err::Exit("shmget");
+
+        fifo->p_shm = (shmhead*)shmat(fifo->shmid, NULL, 0);
+        if (fifo->p_shm == (shmhead*) - 1)
+            err::Exit("shmat");
+        fifo->p_shm->blksize = blksize;
+        fifo->p_shm->blocks = blocks;
+        fifo->p_shm->rd_index = 0;
+        fifo->p_shm->wr_index = 0;
+
+        fifo->p_payload = (char*)(fifo->p_shm + 1);
+
+        fifo->sem_mutex = sem::sem_create(key);
+        fifo->sem_full = sem::sem_create(key + 1);
+        fifo->sem_empty = sem::sem_create(key + 2);
+
+        sem::sem_setval(fifo->sem_mutex, 1);
+        sem::sem_setval(fifo->sem_full, blocks);
+        sem::sem_setval(fifo->sem_empty, 0);
+    } else {
+        fifo->shmid = shmid;
+        fifo->p_shm = (shmhead*)shmat(fifo->shmid, NULL, 0);
+        if (fifo->p_shm == (shmhead*) - 1)
+            err::Exit("shmat");
+
+        fifo->p_payload = (char*)(fifo->p_shm + 1);
+
+        fifo->sem_mutex = sem::sem_open(key);
+        fifo->sem_full = sem::sem_open(key + 1);
+        fifo->sem_empty = sem::sem_open(key + 2);
+    }
+
+    return fifo;
+}
+
+void shmfifo_put(shmfifo* fifo, const void* buf) {
+    sem::sem_p(fifo->sem_full);
+    sem::sem_p(fifo->sem_mutex);
+
+    memcpy(fifo->p_payload + fifo->p_shm->blksize * fifo->p_shm->wr_index, buf, fifo->p_shm->blksize);
+    fifo->p_shm->wr_index = (fifo->p_shm->wr_index + 1) % fifo->p_shm->blocks;
+
+    sem::sem_v(fifo->sem_mutex);
+    sem::sem_v(fifo->sem_empty);
+}
+
+void shmfifo_get(shmfifo* fifo, void* buf) {
+    sem::sem_p(fifo->sem_empty);
+    sem::sem_p(fifo->sem_mutex);
+
+    memcpy(buf, fifo->p_payload + fifo->p_shm->blksize * fifo->p_shm->rd_index, fifo->p_shm->blksize);
+    fifo->p_shm->rd_index = (fifo->p_shm->rd_index + 1) % fifo->p_shm->blocks;
+
+    sem::sem_v(fifo->sem_mutex);
+    sem::sem_v(fifo->sem_full);
+}
+
+void shmfifo_destroy(shmfifo* fifo) {
+    sem::sem_rmid(fifo->sem_mutex);
+    sem::sem_rmid(fifo->sem_full);
+    sem::sem_rmid(fifo->sem_empty);
+    shmdt(fifo->p_shm);
+    shmctl(fifo->shmid, IPC_RMID, 0);
+    free(fifo);
+}
+
+}   // namespace shm
+
+
 
 }   // namespace lt
