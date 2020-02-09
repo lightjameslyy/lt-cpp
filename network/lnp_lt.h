@@ -19,6 +19,8 @@
 #include <sys/mman.h>
 #include <sys/shm.h>
 #include <sys/sem.h>
+#include <sys/stat.h>
+#include <mqueue.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <signal.h>
@@ -160,7 +162,7 @@ inline int sem_v(int semid) {
 }
 
 inline int sem_p(int semid, int no) {
-    struct sembuf sops = {no, -1, 0};
+    struct sembuf sops = {(short unsigned int)no, -1, 0};
     int ret = semop(semid, &sops, 1);
     if (ret == -1)
         err::Exit("semop");
@@ -168,7 +170,7 @@ inline int sem_p(int semid, int no) {
 }
 
 inline int sem_v(int semid, int no) {
-    struct sembuf sops = {no, 1, 0};
+    struct sembuf sops = {(short unsigned int)no, 1, 0};
     int ret = semop(semid, &sops, 1);
     if (ret == -1)
         err::Exit("semop");
