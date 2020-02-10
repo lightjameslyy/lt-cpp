@@ -8,7 +8,7 @@ CXXFLAGS = -O3 -std=c++11 -g -fPIC
 ECXXFLAGS = 
 INC = -I..
 LDFLAGS = ../liblnp.a
-LDLIBS = -lrt
+LDLIBS = -lrt -lpthread
 
 SRCS = $(wildcard *.cpp)
 
