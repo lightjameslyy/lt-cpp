@@ -12,7 +12,7 @@ bool GetHostInfo(std::string& hostName, std::string& Ip) {
     struct hostent* host = gethostbyname(name);
     char ipStr[32];
     const char* ret = inet_ntop(host->h_addrtype, host->h_addr_list[0], ipStr, sizeof(ipStr));
-    if (NULL==ret) {
+    if (NULL == ret) {
         std::cout << "hostname transform to ip failed";
         return false;
     }
