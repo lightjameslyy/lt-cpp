@@ -5,25 +5,22 @@
 
 #include "utils.h"
 
-#include "math/sum/18.4sum.cpp"
+#include "dynamic_programming/2d/72.edit-distance.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<vector<int>> vnums = {
-            {1,  0,  -1, 0,  -2, 2},
-            {-1, -5, -5, -3, 2,  5, 0, 4}
+    vector<string> word1 = {
+        "horse",
+        "intention"
     };
-    vector<int> target = {
-            0,
-            -7
+    vector<string> word2 = {
+        "ros",
+        "execution"
     };
-    for (int i = 0; i < target.size(); ++i) {
-        for (auto res : sol.fourSum(vnums[i], target[i])) {
-            print(res);
-            cout << " ";
-        }
+    for (int i = 0; i < word1.size(); ++i) {
+        cout << sol.minDistance(word1[i],word2[i]);
         cout << endl;
     }
     return 0;
