@@ -5,22 +5,24 @@
 
 #include "utils.h"
 
-#include "dynamic_programming/2d/72.edit-distance.cpp"
+#include "dynamic_programming/887.super-egg-drop.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<string> word1 = {
-        "horse",
-        "intention"
+    vector<int> K = {
+        1,
+        2,
+        3
     };
-    vector<string> word2 = {
-        "ros",
-        "execution"
+    vector<int> N = {
+        2,
+        6,
+        14
     };
-    for (int i = 0; i < word1.size(); ++i) {
-        cout << sol.minDistance(word1[i],word2[i]);
+    for (int i = 0; i < K.size(); ++i) {
+        cout << sol.superEggDrop(K[i], N[i]) << endl;
         cout << endl;
     }
     return 0;
