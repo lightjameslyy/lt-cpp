@@ -5,24 +5,18 @@
 
 #include "utils.h"
 
-#include "dynamic_programming/887.super-egg-drop.cpp"
+#include "greedy/435.non-overlapping-intervals.cpp"
 
 using namespace std;
 
 int main() {
     Solution sol;
-    vector<int> K = {
-        1,
-        2,
-        3
+    vector<vector<vector<int>>> intervals = {
+            {{1,2}, {1,2}, {1,2}},
+            {{1,2}, {2,3}}
     };
-    vector<int> N = {
-        2,
-        6,
-        14
-    };
-    for (int i = 0; i < K.size(); ++i) {
-        cout << sol.superEggDrop(K[i], N[i]) << endl;
+    for (int i = 0; i < intervals.size(); ++i) {
+        cout << sol.eraseOverlapIntervals(intervals[i]) << endl;
         cout << endl;
     }
     return 0;
