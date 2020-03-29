@@ -5,18 +5,18 @@
 
 #include "utils.h"
 
-//#include "greedy/452.minimum-number-of-arrows-to-burst-balloons.cpp"
-#include "string/KMP.cpp"
+#include "dynamic_programming/stock/121.best-time-to-buy-and-sell-stock.cpp"
 
 using namespace std;
 
 int main() {
-//    Solution sol;
-    string pat = "aaab";
-    vector<string> txt = {"aaaaaab", "aaac", "aaacaabaaabaaab"};
-    KMP kmp(pat);
-    for (int i = 0; i < txt.size(); ++i) {
-        cout << kmp.search(txt[i]) << endl;
+    Solution sol;
+    vector<vector<int>> prices = {
+            {7,1,5,3,6,4},
+            {7,6,4,3,1}
+    };
+    for (int i = 0; i < prices.size(); ++i) {
+        cout << sol.maxProfit(prices[i]);
         cout << endl;
     }
     return 0;
