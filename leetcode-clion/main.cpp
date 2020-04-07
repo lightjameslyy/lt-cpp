@@ -5,20 +5,21 @@
 
 #include "utils.h"
 
-#include "dynamic_programming/stock/121.best-time-to-buy-and-sell-stock.cpp"
+#include "tree/BinaryHeap.cpp"
 
 using namespace std;
 
+typedef BinaryHeap<int, less<int>> MaxHeap;
+
 int main() {
-    Solution sol;
-    vector<vector<int>> prices = {
-            {7,1,5,3,6,4},
-            {7,6,4,3,1}
-    };
-    for (int i = 0; i < prices.size(); ++i) {
-        cout << sol.maxProfit(prices[i]);
-        cout << endl;
+    MaxHeap maxHeap(10, less<int>());
+    vector<int> nums{4,3,6,7,42,4,8,1};
+    for (int num : nums)
+        maxHeap.push_back(num);
+    while (!maxHeap.empty()) {
+        cout << maxHeap.pop_front() << " ";
     }
+    cout << endl;
     return 0;
 }
 
