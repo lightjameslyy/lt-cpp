@@ -5,21 +5,21 @@
 
 #include "utils.h"
 
-#include "tree/BinaryHeap.cpp"
+#include "design/146.lru-cache.cpp"
 
 using namespace std;
 
-typedef BinaryHeap<int, less<int>> MaxHeap;
-
 int main() {
-    MaxHeap maxHeap(10, less<int>());
-    vector<int> nums{4,3,6,7,42,4,8,1};
-    for (int num : nums)
-        maxHeap.push_back(num);
-    while (!maxHeap.empty()) {
-        cout << maxHeap.pop_front() << " ";
-    }
-    cout << endl;
+    LRUCache obj(2);
+    obj.put(1,1);
+    obj.put(2,2);
+    cout << obj.get(1) << endl;
+    obj.put(3,3);
+    cout << obj.get(2) << endl;
+    obj.put(4,4);
+    cout << obj.get(1) << endl;
+    cout << obj.get(3) << endl;
+    cout << obj.get(4) << endl;
     return 0;
 }
 
