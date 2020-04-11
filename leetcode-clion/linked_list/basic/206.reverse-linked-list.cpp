@@ -35,16 +35,16 @@
   };
  */
 
+// struct ListNode {
+//     int val;
+//     ListNode *next;
+
+//     ListNode(int x) : val(x), next(NULL) {}
+// };
+
 class Solution {
 public:
-    struct ListNode {
-        int val;
-        ListNode *next;
-
-        ListNode(int x) : val(x), next(NULL) {}
-    };
-
-    ListNode *reverseList(ListNode *head) {
+    ListNode *reverseList1(ListNode *head) {
         if (!head) return NULL;
         ListNode *pre = NULL;
         while (head) {
@@ -54,5 +54,15 @@ public:
             head = tmp;
         }
         return pre;
+    }
+
+    // recursive solution
+    ListNode *reverseList(ListNode *head) {
+        if (head == nullptr || head->next == nullptr)
+            return head;
+        ListNode *last = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return last;
     }
 };

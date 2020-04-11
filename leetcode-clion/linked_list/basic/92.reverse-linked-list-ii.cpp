@@ -12,16 +12,16 @@
  * Testcase Example:  '[1,2,3,4,5]\n2\n4'
  *
  * Reverse a linked list from position m to n. Do it in one-pass.
- * 
+ *
  * Note: 1 ≤ m ≤ n ≤ length of list.
- * 
+ *
  * Example:
- * 
- * 
+ *
+ *
  * Input: 1->2->3->4->5->NULL, m = 2, n = 4
  * Output: 1->4->3->2->5->NULL
- * 
- * 
+ *
+ *
  */
 /**
  * Definition for singly-linked list.
@@ -31,16 +31,16 @@
       ListNode(int x) : val(x), next(NULL) {}
   };
  */
+// struct ListNode {
+//     int val;
+//     ListNode *next;
+
+//     ListNode(int x) : val(x), next(NULL) {}
+// };
+
 class Solution {
-public:
-    struct ListNode {
-        int val;
-        ListNode *next;
-
-        ListNode(int x) : val(x), next(NULL) {}
-    };
-
-    ListNode *reverseBetween(ListNode *head, int m, int n) {
+  public:
+    ListNode *reverseBetween1(ListNode *head, int m, int n) {
         ListNode *dummy = new ListNode(0);
         dummy->next = head;
         ListNode *pre = dummy;
@@ -55,6 +55,27 @@ public:
         }
         head = dummy->next;
         delete dummy;
+        return head;
+    }
+
+    ListNode *post = nullptr;
+
+    ListNode *reverseN(ListNode *head, int n) {
+        if (n == 1) {
+            post = head->next;
+            return head;
+        }
+        ListNode *last = reverseN(head->next, n - 1);
+        head->next->next = head;
+        head->next = post;
+        return last;
+    }
+
+    // recursive solution
+    ListNode *reverseBetween(ListNode *head, int m, int n) {
+        if (m == 1)
+            return reverseN(head, n);
+        head->next = reverseBetween(head->next, m - 1, n - 1);
         return head;
     }
 };
