@@ -9,7 +9,7 @@ ECXXFLAGS =
 LDFLAGS = 
 LDLIBS = 
 
-CXXFLAGS += -O3
+CXXFLAGS += -O0
 #CXXFLAGS += -fopenmp
 #INC += -I..
 
